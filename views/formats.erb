@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubyTube Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <main class="max-w-[1000px] p-10 mx-auto">
+        <a href="/"><h1 class="text-center text-[4rem] outlined-text text-transparent font-bold">RubyTube Downloader</h1></a>
+        <div class="flex items-start gap-2">
+            <img class="rounded" src="<%= videos["thumbnail"] %>" alt="Video Thumbail">
+            <a target="_blank" href="https://youtube.com/watch?v=<%= videos["videoId"] %>"><h1 class="text-center text-[3rem] text-red-600 font-bold"><%= videos["videoName"] %></h1></a>
+        </div>
+        <section class="flex flex-row flex-wrap x gap-3 rounded mt-5">
+            <% videos["sizes"].each do |size| %>
+            <div class="flex flex-col gap-2 w-fit p-4 bg-slate-100 grow">
+                <span>quality: <%= size["pixelRatio"] %></span>
+                <span>size: <%= size["fileSize"] %></span>
+                <a
+                    class="bg-red-600 p-4 rounded w-fit text-white"
+                    href="<%= "/download/#{videos["videoId"]}/#{videos["k_id"]}/#{size["download"]["fquality"]}/#{size["download"]["ftype"]}" %>">
+                    <button onclick="">DOWNLOAD</button></a>
+                <br>
+
+            </div>
+            <% end %>
+        </section>
+    </main>
+
+</body>
+
+</html>
